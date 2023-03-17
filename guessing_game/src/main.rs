@@ -18,7 +18,10 @@ fn main() {
             .expect("Failed to read line");
         println!("enter number is {} ", number);
         // user enter number trim and parse to uint
-        let p: i32 = number.trim().parse().unwrap();
+        let p: i32 = match number.trim().parse(){
+            Ok(num) => num,
+            Err(_) => continue,
+        };
 
         match secret_number.cmp(&p) {
             Ordering::Less => println!(" Less "),
